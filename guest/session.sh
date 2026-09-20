@@ -29,8 +29,6 @@ session_pid=$!
     sleep 2
     cd "$BIONICX_ROOTFS"
     exec "$BIONICX_ROOTFS/opt/OpenCode/ai.opencode.desktop" \
-        --ozone-platform=wayland \
-        --use-gl=angle --use-angle=vulkan \
         --force-renderer-accessibility
 ) &
 
