@@ -10,8 +10,6 @@
   ],
   "requiredFiles": [
     "usr/bin/apt-get",
-    "usr/bin/lxqt-session",
-    "usr/bin/pcmanfm-qt",
     "var/lib/dpkg/status"
   ],
   "environment": {
