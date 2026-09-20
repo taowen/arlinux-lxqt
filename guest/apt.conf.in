@@ -10,3 +10,4 @@ Acquire::Check-Valid-Until "false";
 Acquire::Languages "none";
 APT::Install-Recommends "false";
 APT::Install-Suggests "false";
+APT::Sandbox::User "root";

@@ -26,9 +26,10 @@ find "$out/usr/share/ca-certificates" -type f -name '*.crt' -print0 \
 [[ -s "$out/etc/ssl/certs/ca-certificates.crt" ]]
 
 # Sid may configure base-files before base-passwd. Give maintainer scripts the
-# canonical Debian account names up front; base-passwd takes ownership later.
-cp "$out/usr/share/base-passwd/passwd.master" "$out/etc/passwd"
-cp "$out/usr/share/base-passwd/group.master" "$out/etc/group"
+# root name up front without exposing _apt: Android cannot switch to a real
+# sandbox UID. base-passwd takes ownership of the complete databases later.
+printf 'root:x:0:0:root:/root:/bin/bash\n' > "$out/etc/passwd"
+printf 'root:x:0:\n' > "$out/etc/group"
 ln -s mawk "$out/usr/bin/awk"
 cp "$product/guest/debian.sources" "$out/etc/apt/sources.list.d/debian.sources"
 rm -f "$out/etc/apt/sources.list"
