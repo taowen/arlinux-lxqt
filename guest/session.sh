@@ -22,4 +22,14 @@ Name=LXQt PolicyKit Agent
 Hidden=true
 EOF
 
-exec lxqt-session
+lxqt-session &
+session_pid=$!
+
+(
+    sleep 2
+    cd "$BIONICX_ROOTFS"
+    exec "$BIONICX_ROOTFS/opt/OpenCode/ai.opencode.desktop" \
+        --ozone-platform=x11 --force-renderer-accessibility
+) &
+
+wait "$session_pid"

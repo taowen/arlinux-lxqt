@@ -25,11 +25,12 @@ find "$out/usr/share/ca-certificates" -type f -name '*.crt' -print0 \
     | sort -z | xargs -0 cat > "$out/etc/ssl/certs/ca-certificates.crt"
 [[ -s "$out/etc/ssl/certs/ca-certificates.crt" ]]
 
-# Sid may configure base-files before base-passwd. Give maintainer scripts the
-# root name up front without exposing _apt: Android cannot switch to a real
-# sandbox UID. base-passwd takes ownership of the complete databases later.
+# Sid configures base-files before the guest can create its system users. Seed
+# the names its maintainer scripts require, without exposing _apt: Android
+# cannot switch to a real sandbox UID. systemd-sysusers completes the database
+# during first boot.
 printf 'root:x:0:0:root:/root:/bin/bash\n' > "$out/etc/passwd"
-printf 'root:x:0:\n' > "$out/etc/group"
+printf 'root:x:0:\nmail:x:8:\n' > "$out/etc/group"
 ln -s mawk "$out/usr/bin/awk"
 cp "$product/guest/debian.sources" "$out/etc/apt/sources.list.d/debian.sources"
 rm -f "$out/etc/apt/sources.list"

@@ -33,6 +33,7 @@ AArch64 bundle.
 
 - Debian Sid snapshot with a glibc 2.43 ABI
 - LXQt session, panel, runner, notifications, PCManFM-Qt, and QTerminal
+- OpenCode Desktop, launched with every session as the default AI workspace
 - native Wayland clients with Xwayland available from the host
 - host-provided anlabwc, graphics, input, audio, and AT-SPI transport
 
@@ -46,7 +47,8 @@ complete snapshot rather than applied from an unbounded rolling mirror.
 - `rootfs.lock.json` pins the Debian archive snapshot and base packages.
 - `tools/seed.sh` creates a foreign AArch64 rootfs seed.
 - `guest/first-boot.sh` configures dpkg and installs the desktop natively.
-- `guest/session.sh` supplies mobile-oriented defaults and starts LXQt.
+- `guest/session.sh` supplies mobile-oriented defaults and starts LXQt and
+  OpenCode Desktop.
 - `profile.json` connects the session to the host-provided Wayland display.
 - `native/product-policy.h` scopes Debian package-manager compatibility.
 
