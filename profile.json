@@ -1,0 +1,43 @@
+{
+  "$schema": "../../schemas/profile.schema.json",
+  "schemaVersion": 3,
+  "id": "lxqt",
+  "name": "LXQt Desktop",
+  "display": {
+    "dpi": 144,
+    "socket": "filesystem"
+  },
+  "launch": {
+    "executable": "${RUNTIME}/usr/bin/dbus-run-session",
+    "workingDirectory": "${HOME}",
+    "arguments": [
+      "--",
+      "${RUNTIME}/usr/lib/arlinux/accessibility-session.sh",
+      "${RUNTIME}/usr/lib/arlinux/guest/session.sh"
+    ],
+    "environment": {
+      "DISPLAY": "${DISPLAY}",
+      "HOME": "${HOME}",
+      "TMPDIR": "${FILES}/runtime",
+      "XDG_RUNTIME_DIR": "${FILES}/runtime",
+      "XKB_CONFIG_ROOT": "${FILES}/xkb",
+      "XDG_CONFIG_HOME": "${HOME}/.config",
+      "XDG_CACHE_HOME": "${HOME}/.cache",
+      "XDG_DATA_HOME": "${HOME}/.local/share",
+      "XDG_DATA_DIRS": "${RUNTIME}/usr/local/share:${RUNTIME}/usr/share",
+      "XDG_CURRENT_DESKTOP": "LXQt:labwc",
+      "XDG_SESSION_DESKTOP": "LXQt",
+      "XDG_SESSION_TYPE": "wayland",
+      "WAYLAND_DISPLAY": "wayland-0",
+      "GDK_BACKEND": "wayland,x11",
+      "QT_QPA_PLATFORM": "wayland",
+      "QT_LINUX_ACCESSIBILITY_ALWAYS_ON": "1",
+      "SHELL": "${RUNTIME}/bin/bash",
+      "TERM": "xterm-256color",
+      "PATH": "${RUNTIME}/usr/local/sbin:${RUNTIME}/usr/local/bin:${RUNTIME}/usr/sbin:${RUNTIME}/usr/bin:${RUNTIME}/sbin:${RUNTIME}/bin:/system/bin",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "ACCESSIBILITY_ENABLED": "1"
+    }
+  }
+}

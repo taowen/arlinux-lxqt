@@ -1,0 +1,7 @@
+{
+  "suite": "sid",
+  "snapshot": "20260920T023840Z",
+  "mirror": "https://snapshot.debian.org/archive/debian",
+  "variant": "minbase",
+  "include": "apt,binutils,ca-certificates,coreutils,curl,dash,debian-archive-keyring,dpkg,findutils,grep,patchelf,sed,systemd-standalone-sysusers"
+}

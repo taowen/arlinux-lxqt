@@ -1,0 +1,7 @@
+Types: deb
+URIs: https://snapshot.debian.org/archive/debian/20260920T023840Z/
+Suites: sid
+Components: main
+Architectures: arm64
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
+Check-Valid-Until: no

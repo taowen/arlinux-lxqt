@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/product.schema.json",
+  "name": "Arlinux LXQt",
+  "compositor": "anlabwc",
+  "glibcVersion": "2.43",
+  "libraryDirectories": [
+    "usr/lib/aarch64-linux-gnu",
+    "lib/aarch64-linux-gnu",
+    "usr/lib"
+  ],
+  "requiredFiles": [
+    "usr/bin/apt-get",
+    "usr/bin/lxqt-session",
+    "usr/bin/pcmanfm-qt",
+    "var/lib/dpkg/status"
+  ],
+  "environment": {
+    "GCONV_PATH": "${RUNTIME}/usr/lib/aarch64-linux-gnu/gconv",
+    "GIO_MODULE_DIR": "${RUNTIME}/usr/lib/aarch64-linux-gnu/gio/modules",
+    "LOCPATH": "${RUNTIME}/usr/lib/locale"
+  }
+}
