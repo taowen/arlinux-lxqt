@@ -24,6 +24,11 @@ mkdir -p "$out/etc/ssl/certs"
 find "$out/usr/share/ca-certificates" -type f -name '*.crt' -print0 \
     | sort -z | xargs -0 cat > "$out/etc/ssl/certs/ca-certificates.crt"
 [[ -s "$out/etc/ssl/certs/ca-certificates.crt" ]]
+
+# Sid may configure base-files before base-passwd. Give maintainer scripts the
+# canonical Debian account names up front; base-passwd takes ownership later.
+cp "$out/usr/share/base-passwd/passwd.master" "$out/etc/passwd"
+cp "$out/usr/share/base-passwd/group.master" "$out/etc/group"
 ln -s mawk "$out/usr/bin/awk"
 cp "$product/guest/debian.sources" "$out/etc/apt/sources.list.d/debian.sources"
 rm -f "$out/etc/apt/sources.list"
