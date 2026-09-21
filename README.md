@@ -22,7 +22,7 @@ git clone https://github.com/taowen/arlinux-lxqt.git distributions/lxqt
 ./build.sh doctor
 ./build.sh validate distributions/lxqt
 ./build.sh build lxqt
-./build.sh verify out/lxqt.arlinux-rootfs
+./build.sh verify out/lxqt.zip
 ```
 
 The build is Linux-native, runs as an ordinary user on x86-64, and produces an
