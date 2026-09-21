@@ -6,7 +6,7 @@ readarray -t config < <(python3 - "$product/rootfs.lock.json" <<'PY'
 import json, sys
 x = json.load(open(sys.argv[1]))
 print(x['suite'])
-print(x['mirror'].rstrip('/') + '/' + x['snapshot'])
+print(x['mirror'].rstrip('/'))
 print(x['variant'])
 print(x['include'])
 PY

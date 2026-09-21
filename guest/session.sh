@@ -11,6 +11,9 @@ __userfile__=true
 compositor=labwc
 leave_confirmation=false
 lock_command_wayland=
+
+[Environment]
+XDG_CURRENT_DESKTOP=LXQt:wlroots
 EOF
 fi
 
@@ -22,14 +25,9 @@ Name=LXQt PolicyKit Agent
 Hidden=true
 EOF
 
-lxqt-session &
-session_pid=$!
+# Qt discards an input module that is unavailable during application startup.
+# D-Bus activation returns only after the host input engine is ready.
+dbus-send --session --print-reply --dest=org.arlinux.HostedInput \
+    /org/arlinux/HostedInput org.freedesktop.DBus.Peer.Ping >/dev/null
 
-(
-    sleep 2
-    cd "$BIONICX_ROOTFS"
-    exec "$BIONICX_ROOTFS/opt/OpenCode/ai.opencode.desktop" \
-        --force-renderer-accessibility
-) &
-
-wait "$session_pid"
+exec startlxqt

@@ -1,7 +1,6 @@
 Types: deb
-URIs: https://snapshot.debian.org/archive/debian/20260920T023840Z/
-Suites: sid
+URIs: https://mirrors.tuna.tsinghua.edu.cn/debian
+Suites: testing
 Components: main
 Architectures: arm64
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
-Check-Valid-Until: no

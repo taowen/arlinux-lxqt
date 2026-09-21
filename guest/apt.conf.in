@@ -6,7 +6,6 @@ Dir::Log "var/log/apt";
 DPkg::Pre-Install-Pkgs "";
 DPkg::Post-Invoke "";
 APT::Update::Post-Invoke-Success "";
-Acquire::Check-Valid-Until "false";
 Acquire::Languages "none";
 APT::Install-Recommends "false";
 APT::Install-Suggests "false";

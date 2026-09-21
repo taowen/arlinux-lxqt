@@ -26,26 +26,21 @@ cp "$root/usr/lib/arlinux-platform/ldconfig" "$root/usr/sbin/ldconfig"
 chmod 755 "$root/usr/sbin/ldconfig"
 ldconfig
 
-# Debian maintainer scripts pass --root to these helpers.  The real root is an
-# Android app directory, so SELinux relabelling is neither possible nor needed.
-# Let package scripts use systemd's documented package-manager bypass, then run
-# the same helpers normally; BionicX maps their absolute paths into the guest.
-systemd-sysusers basic.conf
-
 if ! dpkg --configure -a; then
     apt-get update
     apt-get -f install -y
 fi
 
-set -- bash ca-certificates curl dbus-x11 desktop-file-utils fontconfig \
-    fonts-dejavu-core fonts-noto-cjk at-spi2-core python3-dbus python3-pyatspi \
+set -- bash ca-certificates curl dbus-x11 desktop-file-utils fontconfig gvfs gvfs-backends \
+    fonts-dejavu-core fonts-noto-cjk breeze-icon-theme papirus-icon-theme \
+    at-spi2-core python3-dbus python3-pyatspi ibus ibus-gtk3 ibus-gtk4 gir1.2-ibus-1.0 \
     python3-dogtail python3-pip mpg123 \
     wl-clipboard wtype xclip xdotool libwayland-egl1 libwayland-client0 \
     libwayland-server0 libx11-xcb1 libasound2-plugins \
     libpam-elogind \
-    lxqt-session lxqt-panel lxqt-runner lxqt-notificationd lxqt-config lxqt-qtplugin \
-    lxqt-system-theme lxqt-themes pcmanfm-qt qterminal qtxdg-tools qt6-wayland \
-    qt6-qpa-plugins
+    lxqt-core lxqt-branding-debian lxqt-about lxqt-archiver featherpad lximage-qt qlipper qps \
+    screengrab qt6-translations-l10n \
+    qt6-wayland qt6-qpa-plugins qt6-svg-plugins
 missing=
 for package do
     if ! dpkg-query -W -f '${Status}' "$package" 2>/dev/null | grep -q 'install ok installed'; then
@@ -54,13 +49,15 @@ for package do
     fi
 done
 if [ -n "$missing" ]; then
-    echo 'ARLINUX:Updating the Debian Sid snapshot...'
+    echo 'ARLINUX:Updating Debian Testing package metadata...'
     apt-get update
     echo 'ARLINUX:Installing the LXQt desktop...'
     apt-get install -y --no-install-recommends \
-        dbus-system-bus-common systemd-standalone-tmpfiles
-    systemd-sysusers dbus.conf
-    systemd-tmpfiles --create dbus.conf
+        dbus-system-bus-common systemd-standalone-sysusers
+    # Maintainer scripts are intentionally offline during installation.  Run
+    # the standard package helpers once for the system bus before installing
+    # the desktop packages that depend on it.
+    env -u SYSTEMD_SYSUSERS_BYPASS systemd-sysusers dbus.conf
     apt-get install -y --no-install-recommends "$@"
     exit 75
 fi
@@ -74,6 +71,10 @@ cp "$guest/arlinux/"*.py "$root/usr/lib/python3/dist-packages/arlinux/"
 
 "$root/bin/sh" "$guest/opencode-install.sh"
 "$root/bin/sh" "$guest/opencode-instructions.sh"
+install -Dm644 "$guest/opencode-autostart.desktop" \
+    "$root/etc/xdg/autostart/opencode.desktop"
+install -Dm644 "$root/usr/lib/arlinux/org.arlinux.HostedInput.service" \
+    "$root/usr/share/dbus-1/services/org.arlinux.HostedInput.service"
 
 mkdir -p "$root/etc/pulse/client.conf.d" "$root/etc/alsa/conf.d"
 printf 'default-server = unix:%s/runtime/pulse-native\nautospawn = no\nenable-shm = no\n' \

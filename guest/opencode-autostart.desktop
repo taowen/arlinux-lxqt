@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=OpenCode
+Exec=/usr/bin/env XDG_SESSION_TYPE=x11 /opt/OpenCode/ai.opencode.desktop --force-renderer-accessibility
+Path=/
+OnlyShowIn=LXQt;
+Terminal=false
