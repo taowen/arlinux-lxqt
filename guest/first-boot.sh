@@ -11,7 +11,9 @@ mkdir -p "$root/etc/apt/sources.list.d" "$root/etc/dpkg/dpkg.cfg.d" \
     "$root/var/log/apt" "$root/tmp"
 chmod 1777 "$root/tmp"
 if [ ! -s "$root/etc/machine-id" ]; then
+    chmod u+w "$root/etc/machine-id"
     tr -d '-' < /proc/sys/kernel/random/uuid > "$root/etc/machine-id"
+    chmod 444 "$root/etc/machine-id"
 fi
 cp "$guest/debian.sources" "$root/etc/apt/sources.list.d/debian.sources"
 sed "s|@ROOT@|$root|g" "$guest/apt.conf.in" > "$root/etc/apt/apt.conf"
