@@ -57,7 +57,6 @@ instead of mixing a snapshot with current packages.
 - `guest/session.sh` starts upstream `startlxqt` and OpenCode Desktop, with
   the standard wlroots panel backend and Android-owned services excluded.
 - `profile.json` connects the session to the host-provided Wayland display.
-- `native/product-policy.h` scopes Debian package-manager compatibility.
 
 ## License
 
