@@ -1,6 +1,6 @@
 {
   "$schema": "../../schemas/product.schema.json",
-  "name": "Arlinux LXQt",
+  "name": "LXQt",
   "compositor": "anlabwc",
   "glibcVersion": "2.43",
   "libraryDirectories": [

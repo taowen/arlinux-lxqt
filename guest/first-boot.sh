@@ -66,7 +66,9 @@ fi
 
 if ! python3 -c 'import edge_tts' >/dev/null 2>&1; then
     echo 'ARLINUX:Installing online speech support...'
-    python3 -m pip install --break-system-packages --no-cache-dir 'edge-tts==7.2.8'
+    python3 -m pip install --break-system-packages --no-cache-dir \
+        --index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple \
+        'edge-tts==7.2.8'
 fi
 mkdir -p "$root/usr/lib/python3/dist-packages/arlinux"
 cp "$guest/arlinux/"*.py "$root/usr/lib/python3/dist-packages/arlinux/"
