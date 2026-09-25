@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
-root=${BIONICX_ROOTFS:?missing BIONICX_ROOTFS}
-export DPKG_ROOT=$root BIONICX_VIRTUAL_ROOT=1
+root=/
+unset DPKG_ROOT
 export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true
 export SYSTEMD_OFFLINE=1 SYSTEMD_SYSUSERS_BYPASS=1 SYSTEMD_TMPFILES_BYPASS=1
 
@@ -17,15 +17,10 @@ if [ ! -s "$root/etc/machine-id" ]; then
 fi
 cp "$guest/debian.sources" "$root/etc/apt/sources.list.d/debian.sources"
 sed "s|@ROOT@|$root|g" "$guest/apt.conf.in" > "$root/etc/apt/apt.conf"
-printf 'force-not-root\nforce-script-chrootless\nforce-confnew\nroot=%s\nadmindir=%s/var/lib/dpkg\n' \
-    "$root" "$root" > "$root/etc/dpkg/dpkg.cfg.d/arlinux"
+printf 'force-confnew\n' > "$root/etc/dpkg/dpkg.cfg.d/arlinux"
 
 mkdir -p "$root/etc/ld.so.conf.d"
-printf '/usr/lib/arlinux-platform\n' > "$root/etc/ld.so.conf.d/arlinux.conf"
-dpkg-divert --local --no-rename --add /usr/sbin/ldconfig
 dpkg-divert --local --no-rename --add /usr/bin/sudo
-cp "$root/usr/lib/arlinux-platform/ldconfig" "$root/usr/sbin/ldconfig"
-chmod 755 "$root/usr/sbin/ldconfig"
 ldconfig
 
 if ! dpkg --configure -a; then

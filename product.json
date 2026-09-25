@@ -2,7 +2,6 @@
   "$schema": "../../schemas/product.schema.json",
   "name": "LXQt",
   "compositor": "anlabwc",
-  "glibcVersion": "2.43",
   "libraryDirectories": [
     "usr/lib/aarch64-linux-gnu",
     "lib/aarch64-linux-gnu",
