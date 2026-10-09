@@ -68,10 +68,7 @@ fi
 mkdir -p "$root/usr/lib/python3/dist-packages/arlinux"
 cp "$guest/arlinux/"*.py "$root/usr/lib/python3/dist-packages/arlinux/"
 
-"$root/bin/sh" "$guest/opencode-install.sh"
 "$root/bin/sh" "$guest/opencode-instructions.sh"
-install -Dm644 "$guest/opencode-autostart.desktop" \
-    "$root/etc/xdg/autostart/opencode.desktop"
 
 mkdir -p "$root/etc/pulse/client.conf.d" "$root/etc/alsa/conf.d"
 printf 'default-server = unix:%s/runtime/pulse-native\nautospawn = no\nenable-shm = no\n' \

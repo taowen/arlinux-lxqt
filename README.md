@@ -33,7 +33,7 @@ AArch64 bundle.
 - Debian Testing with a glibc 2.43 ABI
 - LXQt session, Debian theme, panel, runner, notifications, PCManFM-Qt, and QTerminal
 - FeatherPad, LXImage-Qt, ScreenGrab, Qlipper, Qps, and LXQt Archiver
-- OpenCode Desktop, launched with every session as the default AI workspace
+- optional OpenCode Desktop, downloaded and installed from Apps or the AI voice entry on first use
 - native Wayland clients with Xwayland available from the host
 - host-provided anlabwc, graphics, input, audio, and AT-SPI transport
 
