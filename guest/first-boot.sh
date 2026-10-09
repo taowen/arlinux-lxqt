@@ -30,7 +30,7 @@ fi
 
 set -- bash ca-certificates curl dbus-x11 desktop-file-utils fontconfig gvfs gvfs-backends \
     fonts-dejavu-core fonts-noto-cjk breeze-icon-theme papirus-icon-theme \
-    at-spi2-core python3-dbus python3-pyatspi ibus ibus-gtk3 ibus-gtk4 gir1.2-ibus-1.0 \
+    at-spi2-core python3-dbus python3-pyatspi ibus ibus-gtk3 ibus-gtk4 gir1.2-ibus-1.0 gir1.2-gtk-3.0 \
     python3-dogtail python3-pip mpg123 \
     wl-clipboard wtype xclip xdotool libwayland-egl1 libwayland-client0 \
     libwayland-server0 libx11-xcb1 libasound2-plugins \
