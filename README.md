@@ -13,20 +13,7 @@ host-specific build entry point.
 
 ## Build
 
-Clone it into an `arlinux-rootfs` checkout:
-
-```bash
-git clone --recurse-submodules https://github.com/taowen/arlinux-rootfs.git
-cd arlinux-rootfs
-git clone https://github.com/taowen/arlinux-lxqt.git distributions/lxqt
-./build.sh doctor
-./build.sh validate distributions/lxqt
-./build.sh build lxqt
-./build.sh verify out/lxqt.zip
-```
-
-The build is Linux-native, runs as an ordinary user on x86-64, and produces an
-AArch64 bundle.
+See [唯一构建与发布流程](https://github.com/taowen/arlinux-rootfs/blob/main/docs/BUILD.md); this recipe is packaged by the same rootfs pipeline.
 
 ## Desktop composition
 
