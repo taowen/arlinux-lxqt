@@ -13,7 +13,7 @@ host-specific build entry point.
 
 ## Build
 
-See [唯一构建与发布流程](https://github.com/taowen/arlinux-rootfs/blob/main/docs/BUILD.md); this recipe is packaged by the same rootfs pipeline.
+See [canonical build and release guide](https://github.com/taowen/arlinux-rootfs/blob/main/docs/BUILD.md); this recipe is packaged by the same rootfs pipeline.
 
 ## Desktop composition
 
