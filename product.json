@@ -9,8 +9,6 @@
   ],
   "requiredFiles": [
     "usr/bin/apt-get",
-    "etc/passwd",
-    "etc/group",
     "var/lib/dpkg/status"
   ],
   "environment": {
