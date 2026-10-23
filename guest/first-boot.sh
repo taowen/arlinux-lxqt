@@ -8,9 +8,6 @@ if [ ! -s /etc/machine-id ]; then
     tr -d '-' < /proc/sys/kernel/random/uuid > /etc/machine-id
     chmod 444 /etc/machine-id
 fi
-mkdir -p /usr/lib/python3/dist-packages/arlinux
-cp "$guest/arlinux/"*.py /usr/lib/python3/dist-packages/arlinux/
-/bin/sh "$guest/opencode-instructions.sh"
 mkdir -p /etc/pulse/client.conf.d /etc/alsa/conf.d
 printf 'default-server = unix:%s/runtime/pulse-native\nautospawn = no\nenable-shm = no\n' \
     "$BIONICX_FILES" > /etc/pulse/client.conf.d/arlinux.conf
