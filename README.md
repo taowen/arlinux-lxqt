@@ -30,7 +30,7 @@ OpenCode currently uses Xwayland because its bundled Electron 42 can leave a
 native Wayland `BrowserWindow` permanently hidden. This uses Electron's normal
 X11 backend without patching OpenCode or adding GPU and sandbox flags; the rest
 of the LXQt session remains native Wayland.
-The base seed, first boot, and subsequent package installations use Debian
+The base seed and subsequent package installations use Debian
 Testing from the Tsinghua mirror. Debian signatures and package hashes are
 verified by APT. Testing is rolling, so package versions can change between
 builds; the distribution intentionally uses this single coherent channel
@@ -40,7 +40,8 @@ instead of mixing a snapshot with current packages.
 
 - `rootfs.lock.json` records the Debian suite, mirror, and base packages.
 - `tools/seed.sh` creates a foreign AArch64 rootfs seed.
-- `guest/first-boot.sh` configures dpkg and installs the desktop natively.
+- `guest/build-desktop.sh` installs the desktop on the native ARM64 runner.
+- `guest/first-boot.sh` performs offline instance-local configuration only.
 - `guest/session.sh` starts upstream `startlxqt` and OpenCode Desktop, with
   the standard wlroots panel backend and Android-owned services excluded.
 - `profile.json` connects the session to the host-provided Wayland display.
